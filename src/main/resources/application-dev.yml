@@ -21,21 +21,25 @@ server:
     # 是否分配的直接内存
     direct-buffers: true
 spring:
+  data:
+    redis:
+      repositories:
+        enabled: false
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://111.230.209.59:3306/test?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
     password: gshjd123
     sql-script-encoding: utf-8
-    #连接池的配置信息
+    # 连接池的配置信息
     hikari:
       connection-timeout: 3000
-      maxLifetime: 30000
+      maxLifetime: 1200000
       maximum-pool-size: 100
       minimum-idle: 100
       validation-timeout: 3000
       login-timeout: 3
-      idle-timeout: 3000
+      idle-timeout: 600000
       auto-commit: true
       connection-test-query: SELECT 1
       pool-name: HikariPool
@@ -43,6 +47,8 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+#    关闭数据库查询显示
+#    open-in-view: false
 
   #  redis配置
   redis:
