@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "spring.redis.jedis.renewal-time",
+      "type": "java.lang.Integer",
+      "description": "Description for spring.redis.jedis.pool.renewal-time."
+    },
+    {
+      "name": "robot.log-robot-url",
+      "type": "java.lang.String",
+      "description": "Description for robot.log-robot-url."
+    }
+  ] }
