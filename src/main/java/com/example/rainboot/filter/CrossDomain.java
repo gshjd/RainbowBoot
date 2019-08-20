@@ -3,7 +3,7 @@ package com.example.rainboot.filter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.SpringBootConfiguration;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * 访问请求处理器
  */
-@Configuration
+@SpringBootConfiguration
 public class CrossDomain implements Filter {
 
     private Logger logger = LoggerFactory.getLogger(CrossDomain.class);

@@ -1,11 +1,9 @@
 package com.example.rainboot.common.util;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -15,7 +13,7 @@ import redis.clients.jedis.JedisPoolConfig;
  * @Author 小熊
  * @Created 2017-07-10 10:00 PM
  */
-@Configuration
+@SpringBootConfiguration
 @Slf4j
 public class JedisUtil {
     @Value("${spring.redis.host}")

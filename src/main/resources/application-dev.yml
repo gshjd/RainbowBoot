@@ -49,7 +49,6 @@ spring:
       ddl-auto: update
 #    关闭数据库查询显示
 #    open-in-view: false
-
   #  redis配置
   redis:
 #    连接地址
@@ -107,13 +106,6 @@ health-ip:
   192.168.100.133,
   192.168.100.43
 
-#eureka:
-#  client:
-#    serviceUrl:
-#      defaultZone: http://127.0.0.1:8783/eureka/,http://127.0.0.1:8592/eureka/
-#  instance:
-#    lease-renewal-interval-in-seconds: 1
-#    lease-expiration-duration-in-seconds: 3
 #暴露health
 #management:
 #  endpoints:
@@ -123,7 +115,3 @@ health-ip:
 #  endpoint:
 #    health:
 #      show-details: ALWAYS
-
-      ##    url: jdbc:mariadb://mariadb.nat123.cc:33062/vinycrm?autoReconnect=true
-      ##    username: vinyCRM
-      ##    password: viny123

@@ -1,7 +1,7 @@
 package com.example.rainboot.config.timedtask;
 
 import com.example.rainboot.common.util.DingTalkUtil;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.scheduling.annotation.Scheduled;
 
 /**
@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.Scheduled;
  * @Author 小熊
  * @Created 2018/11/16 16:34
  */
-@Configuration
+@SpringBootConfiguration
 public class CustomerRecovery {
 
     @Scheduled(cron = "0 30 20 * * ?")
