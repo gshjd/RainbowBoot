@@ -14,7 +14,7 @@ server:
     # 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接, 默认设置每个CPU核心一个线程
     io-threads: 16
     # 阻塞任务线程池, 当执行类似servlet请求阻塞操作, undertow会从这个线程池中取得线程,它的值设置取决于系统的负载
-    worker-threads: 100
+    worker-threads: 128
     # 以下的配置会影响buffer,这些buffer会用于服务器连接的IO操作,有点类似netty的池化内存管理
     # 每块buffer的空间大小,越小的空间被利用越充分
     buffer-size: 1024
@@ -31,14 +31,15 @@ spring:
     username: root
     password: gshjd123
     sql-script-encoding: utf-8
+    type: com.zaxxer.hikari.HikariDataSource
     # 连接池的配置信息
     hikari:
       connection-timeout: 3000
-      maxLifetime: 1200000
-      maximum-pool-size: 100
-      minimum-idle: 100
+      maxLifetime: 1800000
+      minimum-idle: 3
+      maximum-pool-size: 15
       validation-timeout: 3000
-      login-timeout: 3
+      login-timeout: 3000
       idle-timeout: 600000
       auto-commit: true
       connection-test-query: SELECT 1
