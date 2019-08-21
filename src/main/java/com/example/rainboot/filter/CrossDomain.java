@@ -1,5 +1,6 @@
 package com.example.rainboot.filter;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,9 +15,8 @@ import java.io.IOException;
  * 访问请求处理器
  */
 @SpringBootConfiguration
+@Slf4j
 public class CrossDomain implements Filter {
-
-    private Logger logger = LoggerFactory.getLogger(CrossDomain.class);
 
     /**
      * 健康服务白名单ip

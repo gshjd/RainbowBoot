@@ -1,5 +1,6 @@
 package com.example.rainboot.common.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +13,8 @@ import java.util.*;
  * @Author 小熊
  * @Created 2019-08-20
  */
+@Slf4j
 public class ClassUtil {
-
-    private static final Logger LOG = LoggerFactory.getLogger(DateUtil.class);
 
     private static final SimpleDateFormat DAY = getFormat("yyyy-MM-dd");
 
@@ -597,7 +597,7 @@ public class ClassUtil {
         try {
             return format.parse(dateStr);
         } catch (ParseException e) {
-            LOG.error("format yyyy-MM-dd HH:mm:ss error:", e);
+            log.error("format yyyy-MM-dd HH:mm:ss error:", e);
         }
         return null;
     }

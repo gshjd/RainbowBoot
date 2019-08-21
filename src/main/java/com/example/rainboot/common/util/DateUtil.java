@@ -1,5 +1,6 @@
 package com.example.rainboot.common.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,9 +9,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+@Slf4j
 public class DateUtil {
-
-    private static final Logger LOG = LoggerFactory.getLogger(DateUtil.class);
 
     private static final SimpleDateFormat DAY = getFormat("yyyy-MM-dd");
 
@@ -243,8 +243,9 @@ public class DateUtil {
      * 形式的字符串，然后返回时间戳
      */
     public static long getMiniteDate(Date date, String str) {
-        if (str == null)
+        if (str == null) {
             return 0;
+        }
         Date date1 = getMinuteDate(getDayStr(date) + " " + str);
         if (date1 == null) {
             return 0;
@@ -593,7 +594,7 @@ public class DateUtil {
         try {
             return format.parse(dateStr);
         } catch (ParseException e) {
-            LOG.error("format yyyy-MM-dd HH:mm:ss error:", e);
+            log.error("format yyyy-MM-dd HH:mm:ss error:", e);
         }
         return null;
     }

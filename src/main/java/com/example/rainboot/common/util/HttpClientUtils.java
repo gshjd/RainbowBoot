@@ -1,5 +1,6 @@
 package com.example.rainboot.common.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
@@ -13,10 +14,8 @@ import org.springframework.web.client.RestTemplate;
  * @Created 2018/11/6 9:43
  * @Version 1.0
  */
+@Slf4j
 public class HttpClientUtils {
-
-    private static final Logger LOG = LoggerFactory.getLogger(HttpClientUtils.class);
-
     public static String post(String url, MultiValueMap<String, String> params) {
         RestTemplate client = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
