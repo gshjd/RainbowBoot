@@ -13,9 +13,9 @@ import org.springframework.web.client.RestTemplate;
  * @Created 2018/11/6 9:43
  * @Version 1.0
  */
-public class HttpClientUtils {
+public class HttpClientUtil {
 
-    private static final Logger LOG = LoggerFactory.getLogger(HttpClientUtils.class);
+    private static final Logger LOG = LoggerFactory.getLogger(HttpClientUtil.class);
 
     public static String post(String url, MultiValueMap<String, String> params) {
         RestTemplate client = new RestTemplate();

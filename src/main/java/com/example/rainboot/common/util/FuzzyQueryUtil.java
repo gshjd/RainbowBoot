@@ -9,7 +9,7 @@ import java.util.List;
  * @author 小熊
  * @version 1.0
  */
-public class FuzzyQueryUtils {
+public class FuzzyQueryUtil {
 
     /**
      * 整数数组对值模糊查询

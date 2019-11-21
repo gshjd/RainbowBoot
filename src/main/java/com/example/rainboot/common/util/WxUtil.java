@@ -3,8 +3,6 @@ package com.example.rainboot.common.util;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.net.util.Base64;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -29,7 +27,7 @@ import java.security.spec.AlgorithmParameterSpec;
  * @Remark 修复部分上线存在风险的问题
  */
 @Slf4j
-public class WxUtils {
+public class WxUtil {
     private static final String APPID = "";
     private static final String SECRET = "";
     private static final String GRANT_TYPE = "authorization_code";
@@ -47,7 +45,7 @@ public class WxUtils {
         params.add("secret", SECRET);
         params.add("grant_type", GRANT_TYPE);
         params.add("js_code", code);
-        return HttpClientUtils.post(URL, params);
+        return HttpClientUtil.post(URL, params);
     }
 
     /**
@@ -81,7 +79,7 @@ public class WxUtils {
         byte[] sessionKey = base64.decode(key);
         byte[] encryptedDataB = base64.decode(encData);
         try {
-            return JSONObject.parseObject(WxUtils.decrypt(sessionKey, raw, encryptedDataB)).getString("phoneNumber");
+            return JSONObject.parseObject(WxUtil.decrypt(sessionKey, raw, encryptedDataB)).getString("phoneNumber");
         } catch (Exception e) {
             log.error("解密失败：", e);
         }
