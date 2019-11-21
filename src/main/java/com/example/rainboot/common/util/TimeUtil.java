@@ -11,14 +11,14 @@ import java.util.Date;
  * @author 小熊
  * @version 2017-11-03
  */
-public class TimeUtils {
+public class TimeUtil {
 
     public static String toTimeString(long time) {
-        TimeUtils t = new TimeUtils(time);
-        int day = t.get(TimeUtils.DAY);
-        int hour = t.get(TimeUtils.HOUR);
-        int minute = t.get(TimeUtils.MINUTE);
-        int second = t.get(TimeUtils.SECOND);
+        TimeUtil t = new TimeUtil(time);
+        int day = t.get(TimeUtil.DAY);
+        int hour = t.get(TimeUtil.HOUR);
+        int minute = t.get(TimeUtil.MINUTE);
+        int second = t.get(TimeUtil.SECOND);
         StringBuilder sb = new StringBuilder();
         if (day > 0) {
             sb.append(day).append("天");
@@ -78,7 +78,7 @@ public class TimeUtils {
     /**
      * 无参构造，将各字段置为 0
      */
-    public TimeUtils() {
+    public TimeUtil() {
         this(0, 0, 0, 0);
     }
 
@@ -88,7 +88,7 @@ public class TimeUtils {
      * @param hour   小时
      * @param minute 分钟
      */
-    public TimeUtils(int hour, int minute) {
+    public TimeUtil(int hour, int minute) {
         this(0, hour, minute, 0);
     }
 
@@ -99,7 +99,7 @@ public class TimeUtils {
      * @param minute 分钟
      * @param second 秒
      */
-    public TimeUtils(int hour, int minute, int second) {
+    public TimeUtil(int hour, int minute, int second) {
         this(0, hour, minute, second);
     }
 
@@ -109,7 +109,7 @@ public class TimeUtils {
      *
      * @param time 字符串格式的时间，默认采用“:”作为分隔符
      */
-    public TimeUtils(String time) {
+    public TimeUtil(String time) {
         this(time, null);
         // System.out.println(time);
     }
@@ -119,7 +119,7 @@ public class TimeUtils {
      *
      * @param time
      */
-    public TimeUtils(long time) {
+    public TimeUtil(long time) {
         this(new Date(time));
     }
 
@@ -128,7 +128,7 @@ public class TimeUtils {
      *
      * @param date
      */
-    public TimeUtils(Date date) {
+    public TimeUtil(Date date) {
         this(DateFormatUtils.formatUTC(date, "HH:mm:ss"));
     }
 
@@ -140,7 +140,7 @@ public class TimeUtils {
      * @param minute 分
      * @param second 秒
      */
-    public TimeUtils(int day, int hour, int minute, int second) {
+    public TimeUtil(int day, int hour, int minute, int second) {
         initialize(day, hour, minute, second);
     }
 
@@ -150,7 +150,7 @@ public class TimeUtils {
      *
      * @param time 字符串格式的时间
      */
-    public TimeUtils(String time, String timeSeparator) {
+    public TimeUtil(String time, String timeSeparator) {
         if (timeSeparator != null) {
             setTimeSeparator(timeSeparator);
         }
@@ -195,8 +195,8 @@ public class TimeUtils {
      * @param time 需要加的时间
      * @return 运算后的时间
      */
-    public TimeUtils addTime(TimeUtils time) {
-        TimeUtils result = new TimeUtils();
+    public TimeUtil addTime(TimeUtil time) {
+        TimeUtil result = new TimeUtil();
         // 进位标志
         int up = 0;
         for (int i = 0; i < fields.length; i++) {
@@ -213,8 +213,8 @@ public class TimeUtils {
      * @param time 需要减的时间
      * @return 运算后的时间
      */
-    public TimeUtils subtractTime(TimeUtils time) {
-        TimeUtils result = new TimeUtils();
+    public TimeUtil subtractTime(TimeUtil time) {
+        TimeUtil result = new TimeUtil();
         // 退位标志
         int down = 0;
         for (int i = 0, k = fields.length - 1; i < k; i++) {
@@ -333,7 +333,7 @@ public class TimeUtils {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final TimeUtils other = (TimeUtils) obj;
+        final TimeUtil other = (TimeUtil) obj;
         return Arrays.equals(fields, other.fields);
     }
 
