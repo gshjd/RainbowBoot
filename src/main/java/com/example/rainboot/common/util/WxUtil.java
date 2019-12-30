@@ -2,8 +2,8 @@ package com.example.rainboot.common.util;
 
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.net.util.Base64;
 import org.springframework.http.*;
+import org.springframework.util.Base64Utils;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -74,10 +74,9 @@ public class WxUtil {
      * @return 解密后的手机号
      */
     public static String getPhone(String key, String iv, String encData) {
-        Base64 base64 = new Base64();
-        byte[] raw = base64.decode(iv);
-        byte[] sessionKey = base64.decode(key);
-        byte[] encryptedDataB = base64.decode(encData);
+        byte[] raw = Base64Utils.decode(iv.getBytes());
+        byte[] sessionKey = Base64Utils.decode(key.getBytes());
+        byte[] encryptedDataB = Base64Utils.decode(encData.getBytes());
         try {
             return JSONObject.parseObject(WxUtil.decrypt(sessionKey, raw, encryptedDataB)).getString("phoneNumber");
         } catch (Exception e) {
