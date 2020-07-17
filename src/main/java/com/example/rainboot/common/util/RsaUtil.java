@@ -329,12 +329,12 @@ public class RsaUtil {
      * 公钥加密方法
      *
      * @param data      需加密的字符串
-     * @param PUBLICKEY 公钥字符串
+     * @param publicKey 公钥字符串
      * @return 加密后的字符串
      */
-    public static String encryptedDataByPublic(String data, String PUBLICKEY) {
+    public static String encryptedDataByPublic(String data, String publicKey) {
         try {
-            data = encodeBase64(encryptByPublicKey(data.getBytes(), PUBLICKEY));
+            data = encodeBase64(encryptByPublicKey(data.getBytes(), publicKey));
         } catch (Exception e) {
             e.printStackTrace();
             log.error(e.getMessage(), e);
@@ -346,57 +346,19 @@ public class RsaUtil {
      * 私钥解密方法
      *
      * @param data       公钥加密的字符串
-     * @param PRIVATEKEY 私钥字符串
+     * @param privateKey 私钥字符串
      * @return 私钥解密的字符串
      */
-    public static String decryptDataByPrivate(String data, String PRIVATEKEY) {
+    public static String decryptDataByPrivate(String data, String privateKey) {
         String temp = "";
         try {
             byte[] rs = decodeBase64(data);
             //以utf-8的方式生成字符串
-            temp = new String(decryptByPrivateKey(rs, PRIVATEKEY), StandardCharsets.UTF_8);
+            temp = new String(decryptByPrivateKey(rs, privateKey), StandardCharsets.UTF_8);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         return temp;
     }
-
-    public static void main(String[] args) {
-        try {
-            Map<String, Object> keyMap = RsaUtil.initKeyPair();
-            String publicKey = RsaUtil.getPublicKey(keyMap);
-            String privateKey = RsaUtil.getPrivateKey(keyMap);
-            System.out.println("公钥：" + publicKey);
-            System.out.println("私钥：" + privateKey);
-            String source = "我是需要私钥加密的字符串！";
-            System.out.println("签名验证逻辑，私钥加密--公钥解密，需要加密的字符串：" + source);
-            byte[] data = source.getBytes();
-            byte[] encodedData = RsaUtil.encryptByPrivateKey(data, privateKey);
-            System.out.println("私钥加密后：" + new String(encodedData));
-            String sign = RsaUtil.sign(encodedData, privateKey);
-            System.out.println("签名:" + sign);
-            boolean status = RsaUtil.verify(encodedData, publicKey, sign);
-            System.out.println("验证结果:" + status);
-            byte[] decodedData = RsaUtil.decryptByPublicKey(encodedData, publicKey);
-            String target = new String(decodedData);
-            System.out.println("公钥解密私钥加密的数据:" + target);
-
-            System.out.println("---------公钥加密----私钥解密----------");
-            // 这里尽量长一点，复制了一段歌词
-            String msg = "月溅星河，长路漫漫，风烟残尽，独影阑珊；谁叫我身手不凡，谁让我爱恨两难，到后来，" +
-                    "肝肠寸断。幻世当空，恩怨休怀，舍悟离迷，六尘不改；且怒且悲且狂哉，是人是鬼是妖怪，不过是，" +
-                    "心有魔债。叫一声佛祖，回头无岸，跪一人为师，生死无关；善恶浮世真假界,尘缘散聚不分明，难断！" +
-                    "我要这铁棒有何用，我有这变化又如何；还是不安，还是氐惆，金箍当头，欲说还休。我要这铁棒醉舞魔，" +
-                    "我有这变化乱迷浊；踏碎灵霄，放肆桀骜，世恶道险，终究难逃。";
-            String ecodeMsg = RsaUtil.encryptedDataByPublic(msg, publicKey);
-            System.out.println("加密后的歌词：" + ecodeMsg);
-            String decodeMsg = RsaUtil.decryptDataByPrivate(ecodeMsg, privateKey);
-            System.out.println("解密后的歌词：" + decodeMsg);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
 }

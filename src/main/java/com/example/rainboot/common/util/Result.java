@@ -1,6 +1,6 @@
 package com.example.rainboot.common.util;
 
-import java.util.Date;
+import java.io.Serializable;
 
 /**
  * RESTFUL风格代码
@@ -9,16 +9,16 @@ import java.util.Date;
  * @Created 2018-12-24
  * @Remark 无
  */
-public class Result {
+public class Result<T> implements Serializable {
 
     /**
      * 状态值
      */
-    private Integer status;
+    private Integer code;
     /**
      * 数据
      */
-    private Object data;
+    private T data;
     /**
      * 反馈消息
      */
@@ -27,88 +27,88 @@ public class Result {
     /**
      * 服务端时间戳
      */
-    private Date timestamp;
+    private Long timestamp;
 
-    private Result(Integer status, Object data, String message) {
-        this.status = status;
+    private Result(Integer code, T data, String message) {
+        this.code = code;
         this.data = data;
         this.message = message;
-        this.timestamp = new Date();
+        this.timestamp = System.currentTimeMillis();
     }
 
-    public static Result success() {
-        return new Result(200, null, "true");
+    public static <T> Result<T> success() {
+        return new Result<>(200, null, "success");
     }
 
-    public static Result success(Object data) {
-        return new Result(200, data, "");
+    public static <T> Result<T> success(T data) {
+        return new <T> Result<T>(200, data, "");
     }
 
-    public static Result success(String message) {
-        return new Result(200, null, message);
+    public static <T> Result<T> success(String message) {
+        return new Result<>(200, null, message);
     }
 
-    public static Result success(Object data, String message) {
-        return new Result(200, data, message);
+    public static <T> Result<T> success(T data, String message) {
+        return new Result<>(200, data, message);
     }
 
-    public static Result success(Integer status, Object data, String message) {
-        return new Result(status, data, message);
+    public static <T> Result<T> success(Integer code, T data, String message) {
+        return new Result<>(code, data, message);
     }
 
-    public static Result error(Integer status, String message) {
-        return new Result(status, null, message);
+    public static <T> Result<T> error(Integer code, String message) {
+        return new Result<>(code, null, message);
     }
 
-    public static Result error() {
-        return new Result(500, null, "false");
+    public static <T> Result<T> error() {
+        return new Result<>(500, null, "error");
     }
 
-    public static Result error(Object data) {
-        return new Result(500, data, "");
+    public static <T> Result<T> error(T data) {
+        return new Result<>(500, data, "");
     }
 
-    public static Result error(String message) {
-        return new Result(500, null, message);
+    public static <T> Result<T> error(String message) {
+        return new Result<>(500, null, message);
     }
 
-    public static Result error(Object data, String message) {
-        return new Result(500, data, message);
+    public static <T> Result<T> error(T data, String message) {
+        return new Result<>(500, data, message);
     }
 
-    public static Result error(Integer status, Object data, String message) {
-        return new Result(status, data, message);
+    public static <T> Result<T> error(Integer code, T data, String message) {
+        return new Result<>(code, data, message);
     }
 
-    public Integer getstatus() {
-        return status;
+    public Integer getCode() {
+        return code;
     }
 
-    public void setstatus(Integer status) {
-        this.status = status;
+    public void setCode(Integer code) {
+        this.code = code;
     }
 
     public Object getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 
-    public String getmessage() {
+    public String getMessage() {
         return message;
     }
 
-    public void setmessage(String message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 
-    public Date getTimestamp() {
+    public Long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(Long timestamp) {
         this.timestamp = timestamp;
     }
 }
