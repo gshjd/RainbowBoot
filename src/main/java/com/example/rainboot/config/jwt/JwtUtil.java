@@ -55,9 +55,8 @@ public class JwtUtil {
                 .setSubject(subject)
                 //设置签名使用的签名算法和签名使用的秘钥
                 .signWith(signatureAlgorithm, key);
-        long expMillis = nowMillis + 86400000;
         //设置过期时间
-        builder.setExpiration(new Date(expMillis));
+        builder.setExpiration(new Date(Integer.MAX_VALUE));
         return AESUtil.encode(builder.compact());
     }
 
