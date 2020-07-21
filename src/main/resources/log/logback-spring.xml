@@ -75,23 +75,16 @@
         </filter>
     </appender>
 
-    <appender name="SendErrorMsgAppender" class="com.example.rainboot.config.log.SendErrorMsgAppender"/>
-
     <!--通用日志-->
     <root level="INFO">
         <!--线上注释CONSOLE-->
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="ERROR_FILE"/>
         <appender-ref ref="INFO_FILE"/>
-        <appender-ref ref="SendErrorMsgAppender"/>
     </root>
 
     <!--请求日志-->
-    <logger name="com.example.rainboot.config.log.LogAOP" level="INFO">
+    <logger name="com.example.rainboot.system.config.log.LogAOP" level="INFO">
         <appender-ref ref="ACCESS_INFO_FILE"/>
-    </logger>
-
-    <logger name="com.example.rainboot.config.log.SendErrorMsgAppender" level="ERROR">
-        <appender-ref ref="ERROR_FILE"/>
     </logger>
 </configuration>

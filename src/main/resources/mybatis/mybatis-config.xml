@@ -54,7 +54,5 @@
         <typeAlias type="java.lang.Double" alias="double" />
         <typeAlias type="java.lang.Float" alias="float" />
         <typeAlias type="java.lang.Number" alias="number" />
-        <typeAlias type="com.example.rainboot.trunk.user.model.vo.UserUserVO" alias="userUserVO" />
-        <typeAlias type="com.example.rainboot.trunk.user.model.UserUser" alias="userUser" />
     </typeAliases>
 </configuration>
